@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: zuul-center
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.0.1.65:8081/eureka/
+
+zuul:
+  routes:
+    ribbon:
+      path: /ribbon/**
+      serviceId: ribbon-center
+    feign:
+      path: /feign/**
+      serviceId: feign-center
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+
+
+
+
